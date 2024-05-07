@@ -1,0 +1,24 @@
+<div class="container">
+  <h1 class="text-center mt-5 mb-5">Événements à venir</h1>
+  <div class="row">
+    <% @events.each do |event| %>
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5 class="card-title"><%= event.title %></h5>
+      <p class="card-text"><%= event.description %></p>
+      <p class="card-text"><strong>Date :</strong> <%= event.date %></p>
+      <p class="card-text"><strong>Lieu :</strong> <%= event.location %></p>
+      <p class="card-text"><strong>Prix :</strong> <%= event.price %> €</p>
+      <p class="card-text"><strong>Durée :</strong> <%= event.duration %> heures</p>
+        <% if current_user %>
+        <%= link_to "Modifier", edit_event_path(event), class: "btn btn-primary" %>
+        <%= link_to "Supprimer", event_path(event), method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class: "btn btn-danger" %>
+        <% else %>
+        <!-- Afficher un message d'erreur ou rediriger vers la page de connexion -->
+        <% end %>
+    </div>
+  </div>
+<% end %>
+
+  </div>
+</div>

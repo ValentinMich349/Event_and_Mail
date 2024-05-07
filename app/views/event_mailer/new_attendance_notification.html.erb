@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Nouvelle inscription à votre événement</h1>
+
+    <p>Bonjour <%= @event.admin.first_name %>,</p>
+
+    <p>Un nouveau participant s'est inscrit à votre événement "<%= @event.title %>". Voici les détails de l'inscription :</p>
+
+    <ul>
+      <li>Nom : <%= @user.first_name %> <%= @user.last_name %></li>
+      <li>Adresse e-mail : <%= @user.email %></li>
+      <li>Numéro de carte bancaire : <%= @attendance.stripe_customer_id %></li>
+    </ul>
+
+    <p>Cordialement,</p>
+    <p>L'équipe de l'application</p>
+  </body>
+</html>
