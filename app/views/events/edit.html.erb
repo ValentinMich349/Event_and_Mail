@@ -1,0 +1,34 @@
+<div class="container">
+  <h1 class="text-center mt-5 mb-5">edit un événement</h1>
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <% provide(:title, 'Modifier un événement') %>
+
+        <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <%= form_with(model: @event, local: true) do |form| %>
+            <div class="form-group">
+                <%= form.label :title %>
+                <%= form.text_field :title, value: @event.title, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+                <%= form.label :description %>
+                <%= form.text_area :description, value: @event.description, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+                <%= form.label :date %>
+                <%= form.date_field :date, value: @event.date, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+                <%= form.label :location %>
+                <%= form.text_field :location, value: @event.location, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+                <%= form.submit 'Mettre à jour', class: 'btn btn-primary' %>
+            </div>
+            <% end %>
+        </div>
+        </div>
+    </div>
+  </div>
+</div>

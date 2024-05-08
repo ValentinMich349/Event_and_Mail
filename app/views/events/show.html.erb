@@ -8,6 +8,11 @@
           <p class="card-text"><%= @event.description %></p>
           <p class="card-text"><strong>Date :</strong> <%= @event.date %></p>
           <p class="card-text"><strong>Lieu :</strong> <%= @event.location %></p>
+          <p class="card-text"><strong>Prix :</strong><%= @event.price %></p>
+
+          <p class="card-text"><strong>Createur de l event :</strong> <%= @event.user.first_name %> <%= @event.user.last_name %></p>
+          <%= link_to "Éditer mes informations", edit_event_path(@event), class: 'btn btn-secondary' %> 
+          
           <a href="#" class="btn btn-primary">S'inscrire</a>
         </div>
       </div>

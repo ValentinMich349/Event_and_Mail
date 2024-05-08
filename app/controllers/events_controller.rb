@@ -16,29 +16,31 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(
-      start_date: params[:start_date],
-      duration: params[:duration],
-      title: params[:title],
-      description: params[:description],
-      price: params[:price],
-      location: params[:location],
-      user_id: current_user.id
-    )
+    @event = Event.new(event_params)
+    @event.user = current_user
+    @event.admin = User.find_by(admin: true)
 
-
-    
-    @user = User.find_by(email: params[:email])
-    #@gossip = Gossip.create(gossip_params)
-    
     if @event.save
-      flash[:success] = "Evenement bien créé !"
-      redirect_to events_path
+      flash[:success] = "Événement créé avec succès."
+      redirect_to @event
     else
+      flash[:error] = "Erreur lors de la création de l'événement."
       render :new
     end
   end
 
+  def edit
+    @event = Event.find(params[:id])
+  end
+
+  def update
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      redirect_to @event, notice: "Event bien mis à jour !"
+    else
+      render :edit
+    end
+  end
 
   
 
@@ -61,7 +63,10 @@ class EventsController < ApplicationController
       flash[:danger] = "Connecte toi !"
     end
   end
-  
+
+  def event_params
+    params.require(:event).permit(:title, :description, :date, :location, :duration)
+  end
   
 end
 
